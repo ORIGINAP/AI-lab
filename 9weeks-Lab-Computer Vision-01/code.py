@@ -56,6 +56,11 @@ def imshow(inp, title=None):
         plt.title(title)
     plt.pause(0.001)  # 플롯 업데이트를 위한 약간의 일시 중지
 
+inputs, classes = next(iter(dataloaders['train']))
+
+out = torchvision.utils.make_grid(inputs)
+
+imshow(out, title=[class_names[x] for x in classes])
 
 def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     since = time.time()
